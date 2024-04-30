@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Download Dialog</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <style>
+    #download-dialog {
+      display: none;
+    }
+    #progressbar {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="download-dialog" title="Download Progress">
+  <p>Downloading...</p>
+  <div id="progressbar"></div>
+</div>
+
+<button id="start-download">Start Download</button>
+
+<script>
+  $(document).ready(function() {
+    $("#start-download").click(function() {
+      var progressbar = $("#progressbar");
+      $("#download-dialog").dialog({
+        modal: true,
+        closeOnEscape: false,
+        open: function(event, ui) {
+          $(".ui-dialog-titlebar-close", ui.dialog | ui).hide();
+        }
+      });
+
+      var progress = 0;
+      var interval = setInterval(function() {
+        progress += Math.floor(Math.random() * 10) + 1;
+        progressbar.progressbar({
+          value: progress
+        });
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          $("#download-dialog").dialog("close");
+          alert("Download complete!");
+        }
+      }, 500);
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <title>Real-Time Clock</title>
+</head>
+<body>
+  <div id="clock"></div>
+
+  <script>
+    function updateTime() {
+      var now = new Date();
+      var date = now.getDate() + '-' + (now.getMonth() + 1) + '-' + now.getFullYear();
+      var time = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+      document.getElementById('clock').innerHTML = 'Tanggal: ' + date + '<br>' + 'Waktu: ' + time;
+    }
+
+    setInterval(updateTime, 1000); // Update setiap 1 detik
+    updateTime(); // Memanggil fungsi updateTime untuk menampilkan waktu awal
+  </script>
+</body>
+</html>

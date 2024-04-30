@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Menu</title>
+  <style>
+    .menu-item {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li><a href="#" class="menu-trigger" data-menu="home">Home</a></li>
+    <li><a href="#" class="menu-trigger" data-menu="about">About</a></li>
+    <li><a href="#" class="menu-trigger" data-menu="contact">Contact</a></li>
+  </ul>
+
+  <div class="menu-item" id="home">Content for Home</div>
+  <div class="menu-item" id="about">Content for About</div>
+  <div class="menu-item" id="contact">Content for Contact</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.menu-trigger').click(function(e) {
+        e.preventDefault();
+        var target = $(this).data('menu');
+        $('.menu-item').hide();
+        $('#' + target).show();
+      });
+    });
+  </script>
+</body>
+</html>
